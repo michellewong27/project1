@@ -31,7 +31,7 @@ class Board extends React.Component{
         boxes[index] = this.state.xIsNext ? 'x' : 'o'
 
         //add move to the game history array
-        history.push(this.state.xisNext ? 'x' : 'o')
+        history.push(this.state.xIsNext ? 'x' : 'o')
 
         //update component state with the new data
         this.setState({
@@ -66,8 +66,8 @@ class Board extends React.Component{
                 //push data about game into storage
                 this.storage.update([`${winner} won`])
             } else if(!winner && isFilled){
-                status= 'Game drawm!'
-                this.storage.update(['Game drawn'])
+                status= 'Tied game!'
+                this.storage.update(['Tied Game'])
             } else {
                 //no winner & game drawn, ask next player to make a move
                 status = `It's ${(this.state.xIsNext ? 'x' : 'o')}'s turn`
@@ -101,11 +101,10 @@ class Board extends React.Component{
                     <ul className="board-historyList">
                         {this.state.history.length === 0 && <span> No moves to show</span>}
                         {this.state.history.length !== 0 && this.state.history.map((move,index) => {
-                            return <li key={index}>Move {index + 1}: <strong>{move}</strong></li>
+                            return <h3 key={index}>Move {index + 1}: <strong>{move}</strong></h3>
                         })}
                     </ul>
                 </div>
-
                 {winner && <div className="board-footer">
                     <button className="btn" onClick={this.handleBoardRestart}>Start a new game</button>
                     </div>}
